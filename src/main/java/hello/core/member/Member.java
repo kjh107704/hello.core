@@ -3,11 +3,11 @@ package hello.core.member;
 public class Member {
 
     private Long id;
-    private Long name;
+    private String name;
     private Enum grade;
 
     // cmd+N 눌러서 Constructor로 넣고자 하는 멤버변수들 선택하면 뿅 만들어짐
-    public Member(Long id, Long name, Enum grade) {
+    public Member(Long id, String name, Enum grade) {
         this.id = id;
         this.name = name;
         this.grade = grade;
@@ -22,11 +22,11 @@ public class Member {
         this.id = id;
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
