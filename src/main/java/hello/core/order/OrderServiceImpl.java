@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService{
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     // DIP를 지키기 위해서는 구체 클래스를 걷어내면 되는데, 이러면 실행이 안됨 => 실행할 때 객체가 할당되지 않으니까
-    private final DiscountPolicy discountPolicy;
+    private final DiscountPolicy rateDiscountPolicy;
 
     /*
      * lombok의 @RequiredArgsConstructor 로 대체략
@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId);
-        int discountPrice = discountPolicy.discount(member, itemPrice);
+        int discountPrice = rateDiscountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
