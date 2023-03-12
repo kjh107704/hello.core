@@ -3,10 +3,11 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor // final이 붙은 객체를 가지고 생성자를 알아서 만들어줌
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
@@ -19,11 +20,14 @@ public class OrderServiceImpl implements OrderService{
     // DIP를 지키기 위해서는 구체 클래스를 걷어내면 되는데, 이러면 실행이 안됨 => 실행할 때 객체가 할당되지 않으니까
     private final DiscountPolicy discountPolicy;
 
+    /*
+     * lombok의 @RequiredArgsConstructor 로 대체략
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+     */
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
